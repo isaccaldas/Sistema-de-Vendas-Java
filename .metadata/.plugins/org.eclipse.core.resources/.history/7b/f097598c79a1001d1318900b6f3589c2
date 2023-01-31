@@ -74,8 +74,8 @@ public class FornecedoresDAO {
 		
 	} // fim listar
 
-
-	public Fornecedor buscarPorCodigo(Long codigo) {
+	@SuppressWarnings("unchecked")
+	public List<Fornecedor> buscarPorCodigo() {
 
 		Session sessao = HibernateUtil.getSessionFactory().openSession(); // iniciando
 		// e
@@ -85,13 +85,12 @@ public class FornecedoresDAO {
 		// de
 		// conexão
 
-		Fornecedor fornecedor = null;
+		List<Fornecedor> fornecedores = null;
 
 		try {
 
 			Query consulta = sessao.getNamedQuery("Fornecedor.buscarPorCodigo"); // faz o link com a query criada em @NamedQuery da classe domain. 
-			consulta.setLong("codigoUnico", codigo);
-			fornecedor = (Fornecedor) consulta.uniqueResult(); // quando se tem um único resultado
+			fornecedores = consulta.list();
 			
 		} catch (RuntimeException e) {
 
@@ -101,41 +100,9 @@ public class FornecedoresDAO {
 			sessao.close(); // fecha a sessão
 		}
 
-		return fornecedor;
+		return fornecedores;
 		
 	} // fim listar
 	
-	// inclusão de registros
-		public void excluir(Fornecedor fornecedor) {
-
-			Session sessao = HibernateUtil.getSessionFactory().openSession(); // iniciando
-																				// e
-																				// abrindo
-																				// a
-																				// sessao
-																				// de
-																				// conexão
-
-			Transaction transacao = null;
-
-			try {
-
-				transacao = sessao.beginTransaction(); // Iniciando a trasansaçao
-				sessao.delete(fornecedor); // exclui o objeto informado no parametro.
-				transacao.commit(); // Confirmando a transacão
-
-			} catch (RuntimeException e) {
-
-				if (transacao != null) {
-
-					transacao.rollback(); // desfaz a transacao
-
-				}
-
-			} finally {
-				sessao.close(); // fecha a sessão
-			}
-
-		}// fim excluir
 	
 }

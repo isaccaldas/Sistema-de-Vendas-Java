@@ -1,0 +1,77 @@
+package br.com.vendas.dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import br.com.vendas.domain.Fornecedor;
+import br.com.vendas.util.HibernateUtil;
+
+public class FornecedoresDAO {
+
+	// inclusão de registros
+	public void salvar(Fornecedor fornecedor) {
+
+		Session sessao = HibernateUtil.getSessionFactory().openSession(); // iniciando
+																			// e
+																			// abrindo
+																			// a
+																			// sessao
+																			// de
+																			// conexão
+
+		Transaction transacao = null;
+
+		try {
+
+			transacao = sessao.beginTransaction(); // Iniciando a trasansaçao
+			sessao.save(fornecedor); // salva o objeto informado no parametro.
+			transacao.commit(); // Confirmando a transacão
+
+		} catch (RuntimeException e) {
+
+			if (transacao != null) {
+
+				transacao.rollback(); // desfaz a transacao
+
+			}
+
+		} finally {
+			sessao.close(); // fecha a sessão
+		}
+
+	}// fim salvar
+
+	@SuppressWarnings("unchecked")
+	public List<Fornecedor> listar() {
+
+		Session sessao = HibernateUtil.getSessionFactory().openSession(); // iniciando
+		// e
+		// abrindo
+		// a
+		// sessao
+		// de
+		// conexão
+
+		List<Fornecedor> fornecedores = null;
+
+		try {
+
+			Query consulta = sessao.createQuery("Fornecedor.listar"); // faz o link com a query criada em @NamedQuery da classe domain. 
+			fornecedores = consulta.list();
+			
+		} catch (RuntimeException e) {
+
+			throw e;
+
+		} finally {
+			sessao.close(); // fecha a sessão
+		}
+
+		return fornecedores;
+		
+	} // fim listar
+
+}

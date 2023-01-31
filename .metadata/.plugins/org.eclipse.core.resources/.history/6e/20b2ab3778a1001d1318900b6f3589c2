@@ -23,36 +23,18 @@ public class FornecedoresDAOTest {
 	}// fim salvar
 	
 	@Test
-	@Ignore // ignora e não executa
 	public void listar(){
 			
 		FornecedoresDAO fdao = new FornecedoresDAO();
 		List<Fornecedor> fornecedores = fdao.listar();
 		
 		for (Fornecedor fornecedor : fornecedores) {
-			System.out.println(fornecedor);
+			System.out.println(fornecedor.toString());
 		}
 		
-	}
-	
-	@Test
-	@Ignore // ignora e não executa
-	public void buscarPorCodigo(){
-			
-		FornecedoresDAO fdao = new FornecedoresDAO();
-		Fornecedor fornecedor = fdao.buscarPorCodigo(3L);
-				
-			System.out.println(fornecedor);
 		
 	}
 	
-    @Test
-	public void excluir(){
-			
-		FornecedoresDAO fdao = new FornecedoresDAO();
-		Fornecedor fornecedor = fdao.buscarPorCodigo(3L);
-	    fdao.excluir(fornecedor);
-		
-	}
+ 	
 	
 }

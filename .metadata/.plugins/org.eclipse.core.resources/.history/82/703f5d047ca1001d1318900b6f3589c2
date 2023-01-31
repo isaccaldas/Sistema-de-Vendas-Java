@@ -121,7 +121,7 @@ public class FornecedoresDAO {
 			try {
 
 				transacao = sessao.beginTransaction(); // Iniciando a trasansaçao
-				sessao.delete(fornecedor); // exclui o objeto informado no parametro.
+				sessao.delete(fornecedor); // salva o objeto informado no parametro.
 				transacao.commit(); // Confirmando a transacão
 
 			} catch (RuntimeException e) {
@@ -136,6 +136,6 @@ public class FornecedoresDAO {
 				sessao.close(); // fecha a sessão
 			}
 
-		}// fim excluir
+		}// fim salvar
 	
 }

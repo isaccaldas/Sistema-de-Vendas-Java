@@ -33,10 +33,10 @@ public class FornecedoresDAOTest {
 			System.out.println(fornecedor);
 		}
 		
+		
 	}
 	
 	@Test
-	@Ignore // ignora e não executa
 	public void buscarPorCodigo(){
 			
 		FornecedoresDAO fdao = new FornecedoresDAO();
@@ -46,13 +46,6 @@ public class FornecedoresDAOTest {
 		
 	}
 	
-    @Test
-	public void excluir(){
-			
-		FornecedoresDAO fdao = new FornecedoresDAO();
-		Fornecedor fornecedor = fdao.buscarPorCodigo(3L);
-	    fdao.excluir(fornecedor);
-		
-	}
+ 	
 	
 }

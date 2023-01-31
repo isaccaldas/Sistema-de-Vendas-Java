@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_fornecedores") // faz o mapeamento com o nome da tabela
-@NamedQueries({@NamedQuery(name = "Fornecedor.listar", query = "SELECT fornecedor FROM Fornecedor fornecedor"),  //JQL para listar fornecedores chamando o método de listar do dao
-               @NamedQuery(name = "Fornecedor.buscarPorCodigo", query = "SELECT fornecedor FROM Fornecedor fornecedor WHERE fornecedor.codigo = :codigoUnico")}) //faz a busca por filto de código
+@NamedQueries({@NamedQuery(name = "Fornecedor.listar", query = "SELECT fornecedor FROM Fornecedor fornecedor")},  //JQL para listar fornecedores chamando o método de listar do dao
+               @NamedQuery(name = "Fornecedor.listar", query = "SELECT fornecedor FROM Fornecedor fornecedor")})
                                  
 public class Fornecedor {
     
