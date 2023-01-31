@@ -1,0 +1,5 @@
+package br.com.vendas.domain;
+
+public class Item {
+
+}
