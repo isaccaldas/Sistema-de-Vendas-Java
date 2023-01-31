@@ -18,8 +18,8 @@ public class FornecedoresDAO {
 		try {
 			
 			transacao = sessao.beginTransaction(); //Iniciando a trasansaçao
-			sessao.save(fornecedor); //salva o objeto informado no parametro.
 			transacao.commit(); //Confirmando a transacão
+			sessao.save(fornecedor); //salva o objeto informado no parametro.
 			
 		} catch (RuntimeException e) {
 			

@@ -26,8 +26,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Criação das tabelas -->
-		<!-- <property name="hbm2ddl.auto">update</property> //Quando não precisar mais de criar as tabelas pode usar o validate-->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">update</property>
 
         <!--mapeia criando as tabelas  -->
 		<mapping class="br.com.vendas.domain.Fornecedor" />
