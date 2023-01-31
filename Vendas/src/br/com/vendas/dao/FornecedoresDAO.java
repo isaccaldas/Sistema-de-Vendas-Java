@@ -1,0 +1,45 @@
+package br.com.vendas.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import br.com.vendas.domain.Fornecedor;
+import br.com.vendas.util.HibernateUtil;
+
+public class FornecedoresDAO {
+	
+	//inclusão de registros
+	public void salvar(Fornecedor fornecedor) throws Exception{
+		
+		Session sessao = HibernateUtil.getSessionFactory().openSession(); // iniciando e abrindo a sessao de conexão
+		
+		Transaction transacao = null; 
+		
+		try {
+			
+			transacao = sessao.beginTransaction(); //Iniciando a trasansaçao
+			transacao.commit(); //Confirmando a transacão
+			sessao.save(fornecedor); //salva o objeto informado no parametro.
+			
+		} catch (Exception e) {
+			
+			if (transacao != null) {
+				
+				transacao.rollback(); //desfaz a transacao
+				
+			}
+			throw e;
+			
+		}
+		finally{
+			sessao.close(); //fecha a sessão
+		}
+		
+		
+	}
+	
+	
+	
+	
+
+}
