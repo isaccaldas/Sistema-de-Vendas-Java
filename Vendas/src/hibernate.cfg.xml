@@ -30,9 +30,9 @@
 
         <!--mapeia criando as tabelas  -->
 		<mapping class="br.com.vendas.domain.Fornecedor" />
-		<!--<mapping class="br.com.vendas.domain.Funcionario" />
+		<mapping class="br.com.vendas.domain.Funcionario" />
 		<mapping class="br.com.vendas.domain.Produto" />
-		<mapping class="br.com.vendas.domain.Vendas" />
+		<!--<mapping class="br.com.vendas.domain.Vendas" />
 		<mapping class="br.com.vendas.domain.Item" />
 		 -->
 

@@ -1,0 +1,31 @@
+package br.com.vendas.domain;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_produtoss") // faz o mapeamento com o nome da tabela
+public class Produto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) // auto increment
+	@Column(name="pro_codigo")
+	private Long codigo; // Long por ser um bigint
+	
+	@Column(name="pro_descricao", length = 50, nullable = false)
+	private String descricao;
+	
+	@Column(name="pro_preco", length = 50, nullable = false, scale =7, precision=2)
+	private BigDecimal preco;
+	
+	@Column(name="pro_quantidade", length = 50, nullable = false)
+	private Integer quantidade;
+	
+	
+}
