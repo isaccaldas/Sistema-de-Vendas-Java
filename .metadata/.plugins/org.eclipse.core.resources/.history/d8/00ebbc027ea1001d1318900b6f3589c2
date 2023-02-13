@@ -51,9 +51,7 @@ public class FornecedoresDAOTest {
 			
 		FornecedoresDAO fdao = new FornecedoresDAO();
 		Fornecedor fornecedor = fdao.buscarPorCodigo(3L);
-		
-		if(fornecedor != null)
-		fdao.excluir(fornecedor);
+	    fdao.excluir(fornecedor);
 		
 	}
 	
