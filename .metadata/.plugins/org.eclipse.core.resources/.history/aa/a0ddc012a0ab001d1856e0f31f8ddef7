@@ -155,7 +155,7 @@ public class FornecedoresDAO {
 					try {
 
 						transacao = sessao.beginTransaction(); // Iniciando a trasansaçao
-						Fornecedor fornecedor = buscarPorCodigo(codigo);
+						Fornecedor fornecedor = buscarPorCodigo(codigo)
 						sessao.delete(fornecedor); // exclui o objeto informado no parametro.
 						transacao.commit(); // Confirmando a transacão
 

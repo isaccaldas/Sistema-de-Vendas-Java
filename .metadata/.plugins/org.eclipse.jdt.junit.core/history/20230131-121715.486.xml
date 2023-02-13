@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="FornecedoresDAOTest" project="Vendas" tests="3" started="3" failures="0" errors="0" ignored="2">
-  <testsuite name="br.com.vendas.teste.FornecedoresDAOTest" time="1.106">
-    <testcase name="listar" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.0" ignored="true"/>
-    <testcase name="salvar" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.0" ignored="true"/>
-    <testcase name="buscarPorCodigo" classname="br.com.vendas.teste.FornecedoresDAOTest" time="1.106"/>
-  </testsuite>
-</testrun>

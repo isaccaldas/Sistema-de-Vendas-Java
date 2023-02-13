@@ -1,0 +1,2 @@
+127.0.0.1 - - [13/Feb/2023:10:15:09 -0300] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:10:15:10 -0300] "GET /Vendas/WEB-INF/classes/br/com/vendas/teste/FornecedoresDAOTest.java HTTP/1.1" 404 992

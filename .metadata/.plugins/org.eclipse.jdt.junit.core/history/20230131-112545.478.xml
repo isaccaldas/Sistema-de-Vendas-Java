@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="FornecedoresDAOTest" project="Vendas" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="br.com.vendas.teste.FornecedoresDAOTest" time="1.054">
-    <testcase name="salvar" classname="br.com.vendas.teste.FornecedoresDAOTest" time="1.054"/>
-  </testsuite>
-</testrun>
