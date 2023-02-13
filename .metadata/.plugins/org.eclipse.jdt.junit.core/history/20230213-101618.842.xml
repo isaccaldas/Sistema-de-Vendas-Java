@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="FornecedoresDAOTest" project="Vendas" tests="5" started="5" failures="0" errors="0" ignored="4">
+  <testsuite name="br.com.vendas.teste.FornecedoresDAOTest" time="1.038">
+    <testcase name="excluir" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.001" ignored="true"/>
+    <testcase name="listar" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.0" ignored="true"/>
+    <testcase name="salvar" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.0" ignored="true"/>
+    <testcase name="excluirPorCodigo" classname="br.com.vendas.teste.FornecedoresDAOTest" time="1.037"/>
+    <testcase name="buscarPorCodigo" classname="br.com.vendas.teste.FornecedoresDAOTest" time="0.0" ignored="true"/>
+  </testsuite>
+</testrun>

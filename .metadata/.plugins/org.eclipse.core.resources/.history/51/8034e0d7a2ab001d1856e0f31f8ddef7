@@ -59,7 +59,6 @@ public class FornecedoresDAOTest {
 	}
     
     @Test
-    @Ignore // ignora e não executa
 	public void excluirPorCodigo(){
 			
 		FornecedoresDAO fdao = new FornecedoresDAO();
@@ -68,18 +67,4 @@ public class FornecedoresDAOTest {
 		
 	}
 	
-    @Test
-    //@Ignore // ignora e não executa
-	public void editar(){
-			
-    	
-    	Fornecedor fornecedor = new Fornecedor();
-    	fornecedor.setCodigo(4L);
-    	fornecedor.setDescricao("Nova Ordem Mundial");
-    	
-    	
-		FornecedoresDAO fdao = new FornecedoresDAO();
-	    fdao.editar(fornecedor);
-			
-	}
 }

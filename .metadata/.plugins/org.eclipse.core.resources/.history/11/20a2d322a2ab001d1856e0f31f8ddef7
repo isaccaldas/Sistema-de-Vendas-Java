@@ -193,7 +193,7 @@ public class FornecedoresDAO {
 						Fornecedor fornecedorEditar = buscarPorCodigo(fornecedor.getCodigo());
 						fornecedorEditar.setDescricao(fornecedor.getDescricao());
 						
-						sessao.update(fornecedorEditar); // exclui o objeto informado no parametro.
+						sessao.update(fornecedor); // exclui o objeto informado no parametro.
 						transacao.commit(); // Confirmando a transacão
 
 					} catch (RuntimeException e) {

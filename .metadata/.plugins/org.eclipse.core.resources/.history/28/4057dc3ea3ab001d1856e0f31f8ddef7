@@ -74,12 +74,12 @@ public class FornecedoresDAOTest {
 			
     	
     	Fornecedor fornecedor = new Fornecedor();
-    	fornecedor.setCodigo(4L);
-    	fornecedor.setDescricao("Nova Ordem Mundial");
-    	
     	
 		FornecedoresDAO fdao = new FornecedoresDAO();
-	    fdao.editar(fornecedor);
-			
+		//Fornecedor fornecedor = fdao.buscarPorCodigo(3L);
+		
+		if(fornecedor != null)
+		fdao.excluir(fornecedor);
+		
 	}
 }
