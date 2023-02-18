@@ -10,11 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "tb_itens") // faz o mapeamento com o nome da tabela
+@NamedQueries({@NamedQuery(name = "Item.listar", query = "SELECT item FROM Item item"),  //JQL para listar fornecedores chamando o método de listar do dao
+@NamedQuery(name = "Item.buscarPorCodigo", query = "SELECT item FROM Item item WHERE item.codigo = :codigoUnico")}) //faz a busca por filtro de código  
 public class Item {
 
 	@Id
@@ -31,7 +35,7 @@ public class Item {
 	//chave estrangeiras
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tb_vendas_ven_codigo", referencedColumnName = "ven_codigo", nullable = false)
-	private Vendas venda;
+	private Venda venda;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tb_produtos_pro_codigo", referencedColumnName = "pro_codigo", nullable = false)
@@ -61,11 +65,11 @@ public class Item {
 		this.valor_parcial = valor_parcial;
 	}
 
-	public Vendas getVenda() {
+	public Venda getVenda() {
 		return venda;
 	}
 
-	public void setVenda(Vendas venda) {
+	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
 
@@ -75,6 +79,12 @@ public class Item {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [codigo=" + codigo + ", quantidade=" + quantidade + ", valor_parcial=" + valor_parcial + ", venda="
+				+ venda + ", produto=" + produto + "]";
 	}
 	
 	

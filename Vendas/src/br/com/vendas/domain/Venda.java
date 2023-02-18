@@ -11,13 +11,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_vendas") // faz o mapeamento com o nome da tabela
-public class Vendas {
+@NamedQueries({@NamedQuery(name = "Venda.listar", query = "SELECT venda FROM Venda venda"),  //JQL para listar fornecedores chamando o método de listar do dao
+@NamedQuery(name = "Venda.buscarPorCodigo", query = "SELECT venda FROM Venda venda WHERE venda.codigo = :codigoUnico")}) //faz a busca por filtro de código  
+public class Venda {
 	
 
 	@Id
@@ -68,7 +72,12 @@ public class Vendas {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Venda [codigo=" + codigo + ", horario=" + horario + ", valor_total=" + valor_total + ", funcionario="
+				+ funcionario + "]";
+	}
 	
 	
 	
