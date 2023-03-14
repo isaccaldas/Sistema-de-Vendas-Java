@@ -16,7 +16,7 @@
 </h:head>
 <h:body>
 
-	<p:growl id="msgGlobal" />
+	<p:growl id="msgGlobal" rendered="true"/>
 
 	<p:layout fullPage="true">
 
@@ -38,7 +38,7 @@
 					<p:submenu label="Cadastros">
 						<p:menuitem value="Produtos" />
 						<p:menuitem value="Fornecedores" outcome="/pages/fornecedorPesquisa.xhtml"/>
-						<p:menuitem value="Funcionários" />
+						<p:menuitem value="Funcionários" outcome="/pages/funcionarioPesquisa.xhtml"/>
 					</p:submenu>
 
 					<p:submenu label="Vendas"></p:submenu>
