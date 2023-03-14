@@ -28,7 +28,7 @@ template="/template/template.xhtml"
 				
 			</h:panelGrid>
 			<h:panelGrid columns="3">
-			    <p:button value="Novo" />
+			    <p:button value="Novo" actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad"/>
 				<p:commandButton value="Salvar" actionListener="#{MBFornecedores.salvar}" update=":msgGlobal :frmforcad:pnforcad"/>
 				<p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml"/>
 			</h:panelGrid>
