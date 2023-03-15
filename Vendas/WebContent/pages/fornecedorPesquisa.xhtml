@@ -23,7 +23,10 @@
 				<p:button value="Novo" outcome="/pages/fornecedorCadastro.xhtml"/>
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum registro cadastrado.">
+			<p:dataTable emptyMessage="Nenhum registro cadastrado." value="#{MBFornecedores.listar}"
+				filteredValue="#{MBFornecedores.listarFiltrados}"
+				var = "fornecedor"
+			>
 				<p:column headerText="Código">
 				</p:column>
 				
