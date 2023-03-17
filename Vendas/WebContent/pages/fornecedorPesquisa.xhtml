@@ -6,6 +6,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
+    <ui:define name="metadata">
+    <f:metadata>
+      <f:event listener="#{MBFornecedores.prepararPesquisa}" type="preRenderView"/>
+    </f:metadata>
+    </ui:define>
 
 	<ui:define name="conteudo">
 	        <p:toolbar style=" background-color: aqua;">
@@ -13,7 +18,7 @@
 			        <p:outputLabel value="Pesquisar Fornecedores" />
 			    </f:facet>
 			</p:toolbar>
-	
+		
 		<h:form>
 							
 			<h:panelGrid columns="4">
@@ -23,17 +28,30 @@
 				<p:button value="Novo" outcome="/pages/fornecedorCadastro.xhtml"/>
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum registro cadastrado." value="#{MBFornecedores.listar}"
-				filteredValue="#{MBFornecedores.listarFiltrados}"
+			<p:dataTable emptyMessage="Nenhum registro cadastrado." value="#{MBFornecedores.itens}"
+				filteredValue="#{MBFornecedores.itensFiltrados}"
 				var = "fornecedor"
+				rows = "10"
+				paginator="true"
 			>
 				<p:column headerText="Código">
+					<h:outputText value="#{fornecedor.codigo}"/>
 				</p:column>
 				
-				<p:column headerText="Descrição">
+				<p:column headerText="Descrição" filterBy="#{fornecedor.descricao}" sortBy="#{fornecedor.descricao}">
+					<h:outputText value="#{fornecedor.descricao}"/>
 				</p:column>
 				
 				<p:column headerText="Opções">
+				
+				 <p:button icon="ui-icon-pencil" actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad">
+				 		<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
+				 </p:button>
+				 <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad">
+				 	<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
+				 </p:button>
+				 
+				  
 				</p:column>
 
 

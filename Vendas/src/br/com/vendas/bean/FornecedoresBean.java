@@ -2,6 +2,7 @@ package br.com.vendas.bean;
 
 import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,14 +16,14 @@ public class FornecedoresBean {
 
 	private Fornecedor fornecedores;
 
-	// private ArrayList<Fornecedor>itens;
-	// private ArrayList<Fornecedor>itensFiltrados;
-	// private String acao;
-	// private Long codigo;
+	private ArrayList<Fornecedor> itens;
+	private ArrayList<Fornecedor> itensFiltrados;
+	private String acao;
+	private Long codigo;
 
 	public Fornecedor getFornecedores() {
-		
-		if(fornecedores == null){
+
+		if (fornecedores == null) {
 			fornecedores = new Fornecedor();
 		}
 		return fornecedores;
@@ -32,45 +33,50 @@ public class FornecedoresBean {
 		this.fornecedores = fornecedores;
 	}
 
-	// @PostConstruct
-	// public void prepararPesquisa() {
-	//
-	// try {
-	// FornecedoresDAO fdao = new FornecedoresDAO();
-	// itens = (ArrayList<Fornecedor>) fdao.listar();
-	//
-	// } catch (RuntimeException e) {
-	// JSFUtil.adicionarMensagemErro("ex.getMessage()");
-	// e.printStackTrace();
-	// }
-	//
-	// }
-	//
-	// public void carregarCadastro() {
-	//
-	// try {
-	//
-	// if (codigo != null) {
-	//
-	// FornecedoresDAO fdao = new FornecedoresDAO();
-	//
-	// fornecedores = fdao.buscarPorCodigo(codigo);
-	//
-	// } else {
-	// fornecedores = new Fornecedor();
-	//
-	// }
-	//
-	// } catch (RuntimeException e) {
-	// JSFUtil.adicionarMensagemErro("ex.getMessage()");
-	// e.printStackTrace();
-	// }
-	//
-	// }
+	// @PostConstruct // executa o método ao iniciar a tela
+	public void prepararPesquisa() {
 
-	 public void novo(){
-	 fornecedores = new Fornecedor();
-	 }
+		try {
+			FornecedoresDAO fdao = new FornecedoresDAO();
+			itens = (ArrayList<Fornecedor>) fdao.listar();
+
+		} catch (RuntimeException e) {
+			JSFUtil.adicionarMensagemErro("ex.getMessage()");
+			e.printStackTrace();
+		}
+
+	}
+
+	public void carregarCadastro() {
+
+		try {
+
+			String valor = JSFUtil.getParam("forcod");// recupera o código do
+														// parâmetro da tela
+
+			if (valor != null) {
+
+				Long codigo = Long.parseLong(valor); //transforma esse código de string para long
+
+				FornecedoresDAO fdao = new FornecedoresDAO();
+
+				fornecedores = fdao.buscarPorCodigo(codigo);
+
+			} else {
+				fornecedores = new Fornecedor();
+
+			}
+
+		} catch (RuntimeException e) {
+			JSFUtil.adicionarMensagemErro("ex.getMessage()");
+			e.printStackTrace();
+		}
+
+	}
+
+	public void novo() {
+		fornecedores = new Fornecedor();
+	}
 
 	public void salvar() {
 
@@ -88,28 +94,21 @@ public class FornecedoresBean {
 			JSFUtil.adicionarMensagemErro("ex.getMessage()");
 			e.printStackTrace();
 		}
-	}//fim salvar
+	}// fim salvar
 
-	// public void excluir(){
-	// try {
-	// FornecedoresDAO fdao = new FornecedoresDAO();
-	// fdao.excluir(fornecedores);
-	//
-	//
-	//
-	// JSFUtil.adicionarMensagemSucesso("Fornecedor excluido com sucesso!");
-	//
-	// } catch (RuntimeException e) {
-	// JSFUtil.adicionarMensagemErro("Não é possível excluir um fornecedor que
-	// tenha um produto associado!");
-	// e.printStackTrace();
-	// }
-	// }
-	//
-	//
-	//
-	//
-	//
+	public void excluir() {
+		try {
+			FornecedoresDAO fdao = new FornecedoresDAO();
+			fdao.excluir(fornecedores);
+
+			JSFUtil.adicionarMensagemSucesso("Fornecedor excluido com sucesso!");
+
+		} catch (RuntimeException e) {
+			JSFUtil.adicionarMensagemErro("Não é possível excluir um fornecedor quetenha um produto associado!");
+			e.printStackTrace();
+		}
+	}
+
 	// public void editar(){
 	// try {
 	// FornecedoresDAO fdao = new FornecedoresDAO();
@@ -123,5 +122,37 @@ public class FornecedoresBean {
 	// e.printStackTrace();
 	// }
 	// }
+
+	public ArrayList<Fornecedor> getItens() {
+		return itens;
+	}
+
+	public void setItens(ArrayList<Fornecedor> itens) {
+		this.itens = itens;
+	}
+
+	public ArrayList<Fornecedor> getItensFiltrados() {
+		return itensFiltrados;
+	}
+
+	public void setItensFiltrados(ArrayList<Fornecedor> itensFiltrados) {
+		this.itensFiltrados = itensFiltrados;
+	}
+
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 
 }

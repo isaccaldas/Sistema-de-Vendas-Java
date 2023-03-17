@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui"
-template="/template/template.xhtml"
->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{MBFornecedores.carregarCadastro}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
 
 
-<ui:define name="conteudo">
+	<ui:define name="conteudo">
 
 
 		<h:form id="frmforcad">
-		
+
 			<p:toolbar>
 				<f:facet name="left">
-			     <p:outputLabel value="Código:" />
-			    </f:facet>
+					<p:outputLabel value="Código:" />
+				</f:facet>
 			</p:toolbar>
-		
+
 			<h:panelGrid columns="2" id="pnforcad">
 				<p:outputLabel value="Código:" />
-				<p:inputText maxlength="20" size="10" readonly="true" value="#{MBFornecedores.fornecedores.codigo}"/>
+				<p:inputText maxlength="20" size="10" readonly="true"
+					value="#{MBFornecedores.fornecedores.codigo}" />
 				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30" value="#{MBFornecedores.fornecedores.descricao}"/>
-				
+				<p:inputText maxlength="50" size="30"
+					value="#{MBFornecedores.fornecedores.descricao}" />
+
 			</h:panelGrid>
-			<h:panelGrid columns="3">
-			    <p:button value="Novo" actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad"/>
-				<p:commandButton value="Salvar" actionListener="#{MBFornecedores.salvar}" update=":msgGlobal :frmforcad:pnforcad"/>
-				<p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml"/>
+			<h:panelGrid columns="5">
+				<p:button value="Novo" actionListener="#{MBFornecedores.novo}"
+					update=":frmforcad:pnforcad" />
+				<p:commandButton value="Salvar"
+					actionListener="#{MBFornecedores.salvar}"
+					update=":msgGlobal :frmforcad:pnforcad" />
+				<p:commandButton value="Excluir" outcome="/pages/fornecedorPesquisa.xhtml"   actionListener="#{MBFornecedores.excluir}"
+					update=":msgGlobal" />
+			    <p:commandButton value="Editar"
+					update=":msgGlobal" />
+			    <p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml" />
 			</h:panelGrid>
-      </h:form>
-</ui:define>
+		</h:form>
+	</ui:define>
 
 </ui:composition>
