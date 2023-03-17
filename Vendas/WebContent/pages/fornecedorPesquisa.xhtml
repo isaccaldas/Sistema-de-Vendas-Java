@@ -19,7 +19,7 @@
 			    </f:facet>
 			</p:toolbar>
 		
-		<h:form>
+		<h:form id="frmforcad">
 							
 			<h:panelGrid columns="4">
 				<p:outputLabel value="Descrição:" />
@@ -44,10 +44,10 @@
 				
 				<p:column headerText="Opções">
 				
-				 <p:button icon="ui-icon-pencil" actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad">
+				 <p:button icon="ui-icon-pencil" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad">
 				 		<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
 				 </p:button>
-				 <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad">
+				 <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad">
 				 	<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
 				 </p:button>
 				 

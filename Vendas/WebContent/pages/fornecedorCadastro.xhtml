@@ -40,9 +40,9 @@
 				<p:commandButton value="Salvar"
 					actionListener="#{MBFornecedores.salvar}"
 					update=":msgGlobal :frmforcad:pnforcad" />
-				<p:commandButton value="Excluir" outcome="/pages/fornecedorPesquisa.xhtml"   actionListener="#{MBFornecedores.excluir}"
+				<p:commandButton value="Editar" outcome="/pages/fornecedorPesquisa.xhtml"   actionListener="#{MBFornecedores.editar}"
 					update=":msgGlobal" />
-			    <p:commandButton value="Editar"
+				<p:commandButton value="Excluir" outcome="/pages/fornecedorPesquisa.xhtml"  actionListener="#{MBFornecedores.excluir}"
 					update=":msgGlobal" />
 			    <p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml" />
 			</h:panelGrid>

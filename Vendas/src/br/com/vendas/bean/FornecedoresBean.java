@@ -21,18 +21,7 @@ public class FornecedoresBean {
 	private String acao;
 	private Long codigo;
 
-	public Fornecedor getFornecedores() {
-
-		if (fornecedores == null) {
-			fornecedores = new Fornecedor();
-		}
-		return fornecedores;
-	}
-
-	public void setFornecedores(Fornecedor fornecedores) {
-		this.fornecedores = fornecedores;
-	}
-
+	
 	// @PostConstruct // executa o método ao iniciar a tela
 	public void prepararPesquisa() {
 
@@ -56,11 +45,13 @@ public class FornecedoresBean {
 
 			if (valor != null) {
 
-				Long codigo = Long.parseLong(valor); //transforma esse código de string para long
+				Long codigo = Long.parseLong(valor); // transforma esse código
+														// de string para long
 
 				FornecedoresDAO fdao = new FornecedoresDAO();
 
 				fornecedores = fdao.buscarPorCodigo(codigo);
+								
 
 			} else {
 				fornecedores = new Fornecedor();
@@ -109,19 +100,20 @@ public class FornecedoresBean {
 		}
 	}
 
-	// public void editar(){
-	// try {
-	// FornecedoresDAO fdao = new FornecedoresDAO();
-	// fdao.editar(fornecedores);
-	//
-	//
-	// JSFUtil.adicionarMensagemSucesso("Fornecedor editado com sucesso!");
-	//
-	// } catch (RuntimeException e) {
-	// JSFUtil.adicionarMensagemErro("ex.getMessage()");
-	// e.printStackTrace();
-	// }
-	// }
+	public void editar() {
+
+		try {
+			FornecedoresDAO fdao = new FornecedoresDAO();
+
+			fdao.editar(fornecedores);
+
+			JSFUtil.adicionarMensagemSucesso("Fornecedor editado com sucesso!");
+
+		} catch (RuntimeException e) {
+			JSFUtil.adicionarMensagemErro("ex.getMessage()");
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Fornecedor> getItens() {
 		return itens;
@@ -155,4 +147,13 @@ public class FornecedoresBean {
 		this.codigo = codigo;
 	}
 
+	public Fornecedor getFornecedores() {
+		
+		return fornecedores;
+	}
+
+	public void setFornecedores(Fornecedor fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+	
 }
