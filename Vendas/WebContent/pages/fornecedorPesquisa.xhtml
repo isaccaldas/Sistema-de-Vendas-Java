@@ -8,7 +8,7 @@
 
     <ui:define name="metadata">
     <f:metadata>
-      <f:event listener="#{MBFornecedores.prepararPesquisa}" type="preRenderView"/>
+        <f:event listener="#{MBFornecedores.prepararPesquisa}" type="preRenderView"/>
     </f:metadata>
     </ui:define>
 
@@ -25,7 +25,9 @@
 				<p:outputLabel value="Descrição:" />
 				<p:inputText maxlength="50" size="30" />
 				<p:button value="Buscar" />
-				<p:button value="Novo" outcome="/pages/fornecedorCadastro.xhtml"/>
+				<p:button value="Novo" outcome="/pages/fornecedorCadastro.xhtml">
+					<f:param name="foracao" value="Novo"/>
+				</p:button>
 			</h:panelGrid>
 
 			<p:dataTable emptyMessage="Nenhum registro cadastrado." value="#{MBFornecedores.itens}"
@@ -44,11 +46,13 @@
 				
 				<p:column headerText="Opções">
 				
-				 <p:button icon="ui-icon-pencil" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad">
+				 <p:button icon="ui-icon-pencil" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}">
 				 		<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
+				 		<f:param name="foracao" value="Editar"/>
 				 </p:button>
-				 <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" update=":frmforcad">
+				 <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml"  actionListener="#{MBFornecedores.novo}" >
 				 	<f:param name="forcod" value="#{fornecedor.codigo}"/> <!-- Recupera o código do registro ao clicar -->
+				 	<f:param name="foracao" value="Excluir"/>
 				 </p:button>
 				 
 				  

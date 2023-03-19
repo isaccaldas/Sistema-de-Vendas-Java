@@ -8,6 +8,8 @@
 
 	<ui:define name="metadata">
 		<f:metadata>
+		 <f:viewParam name="foracao" value="#{MBFornecedores.acao}"/>
+         <f:viewParam name="forcod" value="#{MBFornecedores.codigo}"/>
 			<f:event listener="#{MBFornecedores.carregarCadastro}"
 				type="preRenderView" />
 		</f:metadata>
@@ -30,20 +32,21 @@
 				<p:inputText maxlength="20" size="10" readonly="true"
 					value="#{MBFornecedores.fornecedores.codigo}" />
 				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"
-					value="#{MBFornecedores.fornecedores.descricao}" />
+				<p:inputText maxlength="50" size="20"
+					value="#{MBFornecedores.fornecedores.descricao}" 
+					readonly="#{MBFornecedores.acao == 'Excluir'}"/>
 
 			</h:panelGrid>
 			<h:panelGrid columns="5">
 				<p:button value="Novo" actionListener="#{MBFornecedores.novo}"
-					update=":frmforcad:pnforcad" />
+					update=":frmforcad:pnforcad" rendered="#{MBFornecedores.acao == 'Novo'}"/>
 				<p:commandButton value="Salvar"
 					actionListener="#{MBFornecedores.salvar}"
 					update=":msgGlobal :frmforcad:pnforcad" />
 				<p:commandButton value="Editar" outcome="/pages/fornecedorPesquisa.xhtml"   actionListener="#{MBFornecedores.editar}"
-					update=":msgGlobal" />
+					update=":msgGlobal" rendered="#{MBFornecedores.acao == 'Editar'}"/>
 				<p:commandButton value="Excluir" outcome="/pages/fornecedorPesquisa.xhtml"  actionListener="#{MBFornecedores.excluir}"
-					update=":msgGlobal" />
+					update=":msgGlobal" rendered="#{MBFornecedores.acao == 'Excluir'}"/>
 			    <p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml" />
 			</h:panelGrid>
 		</h:form>

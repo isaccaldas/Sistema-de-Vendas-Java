@@ -39,13 +39,18 @@ public class FornecedoresBean {
 	public void carregarCadastro() {
 
 		try {
-
-			String valor = JSFUtil.getParam("forcod");// recupera o código do
+            
+			//verifica a ação que o usuário informou
+			//acao = JSFUtil.getParam("foracao"); //recupera o parametro da tela
+			
+			
+			// Carregar os dados de fornecedor a partir do código
+			//String valor = JSFUtil.getParam("forcod");// recupera o código do
 														// parâmetro da tela
 
-			if (valor != null) {
+			if (codigo != null) {
 
-				Long codigo = Long.parseLong(valor); // transforma esse código
+				//Long codigo = Long.parseLong(codigo); // transforma esse código
 														// de string para long
 
 				FornecedoresDAO fdao = new FornecedoresDAO();
