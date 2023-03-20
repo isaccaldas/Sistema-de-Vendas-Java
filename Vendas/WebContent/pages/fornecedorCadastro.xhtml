@@ -34,7 +34,9 @@
 				<p:outputLabel value="Descrição:" />
 				<p:inputText maxlength="50" size="20"
 					value="#{MBFornecedores.fornecedores.descricao}" 
-					readonly="#{MBFornecedores.acao == 'Excluir'}"/>
+					readonly="#{MBFornecedores.acao == 'Excluir'}" > 
+					<f:validateBean/> <!-- faz a validação pelo bean -->
+					</p:inputText>
 
 			</h:panelGrid>
 			<h:panelGrid columns="5">

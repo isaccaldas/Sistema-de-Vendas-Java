@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "tb_fornecedores") // faz o mapeamento com o nome da tabela
 @NamedQueries({@NamedQuery(name = "Fornecedor.listar", query = "SELECT fornecedor FROM Fornecedor fornecedor"),  //JQL para listar fornecedores chamando o método de listar do dao
@@ -21,6 +23,7 @@ public class Fornecedor {
 	@Column(name="for_codigo")
 	private Long codigo; // Long por ser um bigint
 	
+	@NotEmpty(message = "Insira a descricão.")
 	@Column(name="for_descricao", length = 50, nullable = false)
 	private String descricao;
 
