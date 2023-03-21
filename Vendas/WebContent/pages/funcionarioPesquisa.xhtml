@@ -7,44 +7,80 @@
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{MBFuncionarios.prepararPesquisa}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+
 	<ui:define name="conteudo">
-	        <p:toolbar style=" background-color: aqua;">
-				<f:facet name="left">
-			        <p:outputLabel value="Pesquisar Funcionários" />
-			    </f:facet>
-			</p:toolbar>
-	
-		<h:form>
-							
-			<h:panelGrid columns="7">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="20" />
+		<p:toolbar style=" background-color: aqua;">
+			<f:facet name="left">
+				<p:outputLabel value="Pesquisar Funcionários" />
+			</f:facet>
+		</p:toolbar>
+
+		<h:form id="frmforcad">
+
+			<h:panelGrid columns="8">
 				<p:outputLabel value="CPF:" />
 				<p:inputMask mask="999.999.999-99" maxlength="20" size="15" />
+				<p:outputLabel value="Cargo:" />
 				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione um Cargo"/>
-					<f:selectItem itemLabel="Administrador"/>
-					<f:selectItem itemLabel="Gerente"/>
-					<f:selectItem itemLabel="Balconista"/>
+					<f:selectItem itemValue="" itemLabel="Selecione um Cargo" />
+					<f:selectItem itemValue="Administrador" itemLabel="Administrador" />
+					<f:selectItem itemValue="Gerente" itemLabel="Gerente" />
+					<f:selectItem itemValue="Balconista" itemLabel="Balconista" />
 				</p:selectOneMenu>
+				<p:outputLabel value="Nome:" />
+				<p:inputText maxlength="50" size="30" />
 				<p:button value="Buscar" />
-				<p:button value="Novo" outcome="/pages/funcionarioCadastro.xhtml"/>
+				<p:button value="Novo" outcome="/pages/funcionarioCadastro.xhtml">
+					<f:param name="funacao" value="Novo" />
+				</p:button>
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum registro cadastrado.">
+			<p:dataTable emptyMessage="Nenhum registro cadastrado."
+				value="#{MBFuncionarios.itens}"
+				filteredValue="#{MBFuncionarios.itensFiltrados}" var="funcionario"
+				rows="10" paginator="true">
 				<p:column headerText="Código">
+					<h:outputText value="#{funcionario.codigo}" />
 				</p:column>
-				
-				<p:column headerText="Nome">
+
+				<p:column headerText="Nome" filterBy="#{funcionario.nome}"
+					sortBy="#{funcionario.nome}">
+					<h:outputText value="#{funcionario.nome}" />
 				</p:column>
-				
-				<p:column headerText="CPF">
+
+				<p:column headerText="CPF" filterBy="#{funcionario.cpf}">
+					<h:outputText value="#{funcionario.cpf}" />
 				</p:column>
-				
-				<p:column headerText="Função">
+
+				<p:column headerText="Função" filterBy="#{funcionario.funcao}" 
+					sortBy="#{funcionario.funcao}">
+					<h:outputText value="#{funcionario.funcao}" />
 				</p:column>
-				
+
 				<p:column headerText="Opções">
+
+					<p:button icon="ui-icon-pencil"
+						outcome="/pages/funcionarioCadastro.xhtml"
+						actionListener="#{MBFuncionarios.novo}">
+						<f:param name="funcod" value="#{funcionario.codigo}" />
+						<!-- Recupera o código do registro ao clicar -->
+						<f:param name="funacao" value="Editar" />
+					</p:button>
+					<p:button icon="ui-icon-trash"
+						outcome="/pages/funcionarioCadastro.xhtml"
+						actionListener="#{MBFuncionarios.novo}">
+						<f:param name="funcod" value="#{funcionario.codigo}" />
+						<!-- Recupera o código do registro ao clicar -->
+						<f:param name="funacao" value="Excluir" />
+					</p:button>
+
+
 				</p:column>
 
 
@@ -54,5 +90,6 @@
 
 		</h:form>
 	</ui:define>
+
 
 </ui:composition>

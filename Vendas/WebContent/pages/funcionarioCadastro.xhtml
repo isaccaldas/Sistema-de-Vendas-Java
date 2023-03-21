@@ -1,46 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui"
-template="/template/template.xhtml"
->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
 
-<ui:define name="conteudo">
-		<h:form>
-		
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="funacao" value="#{MBFuncionarios.acao}" />
+			<f:viewParam name="funcod" value="#{MBFuncionarios.codigo}" />
+			<f:event listener="#{MBFuncionarios.carregarCadastro}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="frmfuncad">
+
 			<p:toolbar>
 				<f:facet name="left">
-			     <p:outputLabel value="Cadastro de Funcionários" />
-			    </f:facet>
+					<p:outputLabel value="Cadastro de Funcionários" />
+				</f:facet>
 			</p:toolbar>
-		
-			<h:panelGrid columns="2">
-			    <p:outputLabel value="Codigo:" />
-				<p:inputText maxlength="20" size="20" />
+
+			<h:panelGrid columns="2" id="pnfuncad">
+				
+				<p:outputLabel value="Codigo:" />
+				<p:inputText maxlength="20" size="10" readonly="true"
+					value="#{MBFuncionarios.funcionarios.codigo}" />
+				
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="20" />
+				<p:inputText maxlength="50" size="20" 
+				    value="#{MBFuncionarios.funcionarios.nome}" readonly="#{MBFuncionarios.acao == 'Excluir'}"/>
+				
 				<p:outputLabel value="CPF:" />
-				<p:inputMask mask="999.999.999-99" maxlength="20" size="20" />
+				<p:inputMask mask="999.999.999-99" maxlength="20" size="20" 
+				    value="#{MBFuncionarios.funcionarios.cpf}" readonly="#{MBFuncionarios.acao == 'Excluir'}"/>
+				
 				<p:outputLabel value="Senha:" />
-				<p:password maxlength="8" size="20" />
-				<p:outputLabel value="Cargo:" />
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione um Cargo"/>
-					<f:selectItem itemLabel="Administrador"/>
-					<f:selectItem itemLabel="Gerente"/>
-					<f:selectItem itemLabel="Balconista"/>
+				<p:password maxlength="8" size="20" 
+				  value="#{MBFuncionarios.funcionarios.senha}" readonly="#{MBFuncionarios.acao == 'Excluir'}"/>
+				
+				<p:outputLabel value="Função:" />
+				<p:selectOneMenu  value="#{MBFuncionarios.funcionarios.funcao}" readonly="#{MBFuncionarios.acao == 'Excluir'}">
+					<f:selectItem itemValue="" itemLabel="Selecione um Cargo" />
+					<f:selectItem itemValue="Administrador" itemLabel="Administrador" />
+					<f:selectItem itemValue="Gerente" itemLabel="Gerente" />
+					<f:selectItem itemValue="Balconista" itemLabel="Balconista" />
 				</p:selectOneMenu>
 			</h:panelGrid>
-			<h:panelGrid columns="3">
-			    <p:button value="Novo" />
-				<p:commandButton value="Salvar" />
-				<p:button value="Voltar" outcome="/pages/funcionarioPesquisa.xhtml"/>
+			
+			<h:panelGrid columns="5">
+				<p:button value="Novo" actionListener="#{MBFuncionarios.novo}"
+					update=":frmfuncad:pnfuncad" rendered="#{MBFuncionarios.acao == 'Novo'}"/>
+				<p:commandButton value="Salvar"
+					actionListener="#{MBFuncionarios.salvar}"
+					update=":msgGlobal :frmfuncad:pnfuncad" />
+				<p:commandButton value="Editar" outcome="/pages/funcionarioPesquisa.xhtml"   actionListener="#{MBFuncionarios.editar}"
+					update=":msgGlobal" rendered="#{MBFuncionarios.acao == 'Editar'}"/>
+				<p:commandButton value="Excluir" outcome="/pages/funcionarioPesquisa.xhtml"  actionListener="#{MBFuncionarios.excluir}"
+					update=":msgGlobal" rendered="#{MBFuncionarios.acao == 'Excluir'}"/>
+			    <p:button value="Voltar" outcome="/pages/funcionarioPesquisa.xhtml" />
 			</h:panelGrid>
-      </h:form>
-</ui:define>
+		</h:form>
+	</ui:define>
 
 </ui:composition>
